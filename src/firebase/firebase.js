@@ -15,4 +15,18 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database()
 
 
+const testUser = database.ref("ladder/users")
+
+testUser.equalTo("TSLYusr8xmd8gUUfDNO0260qqT43").once("value").then((snapshot) => {
+  const users = []
+  snapshot.forEach((childSnapshot) => {
+    users.push({
+      id:childSnapshot.key,
+      ...childSnapshot.val()
+    })
+  })
+  console.log(users)
+});
+
+
 export {firebase, database as default}

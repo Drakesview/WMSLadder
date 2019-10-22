@@ -5,9 +5,11 @@ import LoginPage from '../components/LoginPage'
 import DashboardPage from '../components/DashboardPage';
 import LadderPage from '../components/LadderPage'
 import ResultsPage from '../components/ResultsPage'
+import SignUpPage from '../components/SignUpPage'
 import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute.js';
 import PublicRoute  from './PublicRoute';
+import ControlledTabs from '../components/ProfilePage'
 
 export const history = createHistory();
 
@@ -15,9 +17,11 @@ const AppRouter = () => (
     <Router history={history}>
     <div>
         <Switch>
-        <PublicRoute path="/" component={DashboardPage} exact= {true} />
-        <PublicRoute path="/ladder" component={LadderPage} />
-        <PublicRoute path="/results" component={ResultsPage} />    
+        <PublicRoute path="/" component={LoginPage} exact= {true} />
+        <PublicRoute path="/signup" component={SignUpPage} />
+        <PrivateRoute path="/dashboard" component={DashboardPage} />
+        <PrivateRoute path="/results" component={ResultsPage} />    
+        <Route component={ControlledTabs} path="/profile"/>
         <Route component={NotFoundPage}/>
       </Switch>
     </div>

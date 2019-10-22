@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
 import {SingleDatePicker} from 'react-dates'
-import {getLadder} from '../actions/ladder'
+import {getLadder, startUpdateLadder} from '../actions/ladder'
 import {addMatch} from '../actions/matches'
 import uuid from 'uuid'
 
@@ -12,7 +12,9 @@ export class ResultsPage extends React.Component{
     constructor(props) {
         super(props)
         this.state= {
-            player1:this.props.players[2].name,
+            player1:this.props.players.find(obj => {
+                return obj.id === this.props.auth.uid
+            }).name,
             player2:'',
             winningPos:0,
             losingPos:0,
@@ -108,7 +110,7 @@ export class ResultsPage extends React.Component{
                     const winner = newLadder.slice(winningPlayerIndex,(winningPlayerIndex+1))
                     newLadder.splice(winningPlayerIndex,1)
                     newLadder.splice(losingPlayerIndex,0,winner[0])
-                    this.props.getLadder(newLadder)
+                    this.props.startUpdateLadder(newLadder)
 
                 }
 
@@ -171,13 +173,15 @@ export class ResultsPage extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        players:state.ladder
+        players:state.ladder,
+        auth:state.auth
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
     getLadder: (userData) => dispatch(getLadder(userData)),
-    addMatch: (matchData) => dispatch(addMatch(matchData))
+    addMatch: (matchData) => dispatch(addMatch(matchData)),
+    startUpdateLadder : (newLadder) => dispatch(startUpdateLadder(newLadder))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ResultsPage)

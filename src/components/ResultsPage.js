@@ -106,11 +106,13 @@ export class ResultsPage extends React.Component{
                         datePlayed: this.state.datePlayed.valueOf()
                     })
 
-                    let newLadder = propPlayers 
-                    const winner = newLadder.slice(winningPlayerIndex,(winningPlayerIndex+1))
-                    newLadder.splice(winningPlayerIndex,1)
-                    newLadder.splice(losingPlayerIndex,0,winner[0])
-                    this.props.startUpdateLadder(newLadder)
+                    // let newLadder = propPlayers 
+                    // const winner = newLadder.slice(winningPlayerIndex,(winningPlayerIndex+1))
+                    // newLadder.splice(winningPlayerIndex,1)
+                    // newLadder.splice(losingPlayerIndex,0,winner[0])
+                    // this.props.startUpdateLadder(newLadder)
+
+                    
 
                 }
 

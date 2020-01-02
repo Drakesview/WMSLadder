@@ -51,11 +51,14 @@ export class SignUpPage extends React.Component{
                     if (state.password && (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(state.password))) {
                         if(state.password === state.confirmPassword) {
                             this.setState(() => ({error:''}))
-                            this.props.startCreateUser(state.email,state.password).then((user) => {
+                            this.props.startCreateUser(state.email,state.password).then((data) => {
                                 this.props.startAddUserToLadder({
-                                    id:user.uid,
+                                    id:data.user.uid,
                                     name:`${state.firstName} ${state.lastName}`,
-                                    email:state.email
+                                    email:state.email,
+                                    gamesPlayed:0,
+                                    gamesWon:0,
+                                    gamesLost:0
                                 })
                             }).catch((e) => {
                                 this.setState(() => ({error:e.message}))
@@ -128,7 +131,7 @@ export class SignUpPage extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        startCreateUser: (email, password) => (dispatch(startCreateUser(email, password))),
+        startCreateUser: (email, password) => dispatch(startCreateUser(email, password)),
         startAddUserToLadder: (userData) => dispatch(startAddUserToLadder(userData))
     }
 }

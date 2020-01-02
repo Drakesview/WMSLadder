@@ -1,29 +1,46 @@
 import React, {useState} from 'react';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import LadderPage from './LadderPage';
-import NotFoundPage from './NotFoundPage';
-import TabContainer from 'react-bootstrap/TabContainer';
+import {connect} from 'react-redux';
+import {startGetMatches} from '../actions/matches'
 
-const ControlledTabs = () => {
-    const [key, setKey] = useState('home');
+export class ControlledTabs extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        userName:this.props.ladder.find(obj => {
+          return obj.id === this.props.match.params.id
+      }).name,
+        matches:[],
+        gamesPlayed:this.props.ladder.find(obj => {
+          return obj.id === this.props.match.params.id
+      }).gamesPlayed,
+        gamesWon:this.props.ladder.find(obj => {
+          return obj.id === this.props.match.params.id
+      }).gamesWon,
+        gamesLost:this.props.ladder.find(obj => {
+          return obj.id === this.props.match.params.id
+      }).gamesLost
+      }
+    }
+
+    componentDidMount() {
+      this.setState({matches:this.props.startGetMatches(this.props.match.params.id)})
+    }
+    
+    render() {
     return (
     <div>
-    <div>
-        <h3>Hello user</h3>
-    </div>
-    <div>
-      <Tabs id="controlled-tab-example" activeKey={key} onSelect={k => setKey(k)}>
-        <Tab eventKey="home" title="Home">
-          <LadderPage />
-        </Tab>
-        <Tab eventKey="profile" title="Match Details">
-          <NotFoundPage />
-        </Tab>
-      </Tabs>
-      </div>
+      <h3>Hello {this.state.userName} </h3>
     </div>
     );
   }
+}
   
-  export default ControlledTabs
+  const mapStateToProps = (state) => ({
+    ladder:state.ladder
+  })
+
+  const mapDispatchToProps = (dispatch) => ({
+    startGetMatches : (id) => dispatch(startGetMatches(id))
+  })
+
+  export default connect(mapStateToProps,mapDispatchToProps)(ControlledTabs)

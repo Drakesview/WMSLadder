@@ -7,7 +7,7 @@ export const addMatch = (matchData) => ({
 });
 
 export const getMatches = (matchData) => ({
-    type:'GET_MATCH',
+    type:'GET_MATCHES',
     matchData
 });
 
@@ -19,8 +19,8 @@ export const startGetMatches = (id) => {
                 if (doc.data().Player1 === id || doc.data().Player2 === id) {
                     matches.push({
                         id:doc.id,
-                        ...doc.data()
-                    })
+                        ...doc.data()  
+                    })  
                 }
             })
             dispatch(getMatches(matches))

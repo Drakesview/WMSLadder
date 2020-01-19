@@ -1,7 +1,7 @@
 export default (state = [], action) => {
     switch(action.type) {
         case 'GET_MATCHES':
-        return action.userData
+        return action.matchData
         case 'ADD_MATCH':
             return [
                 ...state,

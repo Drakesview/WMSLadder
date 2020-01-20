@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {startGetMatches} from '../actions/matches'
 import UpcomingGamesPage from './UpcomingGamesPage'
+import PendingRequestPage from './PendingRequestPage'
 
 export class ControlledTabs extends React.Component {
     constructor(props) {
@@ -31,21 +32,36 @@ export class ControlledTabs extends React.Component {
     <div>
       <h3>Hello {this.state.userName} </h3>
       <p>you have won {this.state.gamesWon}</p>
-    { this.props.matches.length > 0 ?
+      <div>
+      <h3>Upcoming Games</h3>
+        {this.props.matches.length > 0 ? 
          this.props.matches.map((match) => {
            if (match.stage === 1) {
              return <UpcomingGamesPage 
                key = {match.id}
                {...match}
              />
- 
-           }
            
-         })
-
-      :
+         }})
+    : 
         <p>no matches found</p>
-      }
+    }
+      </div>
+      <div>
+      <h3>Pending game requests</h3>
+      {this.props.matches.length > 0 ? 
+        this.props.matches.map((match) => {
+          if (match.stage === 2) {
+            return <PendingRequestPage 
+              key = {match.id}
+              {...match}
+            />
+          
+        }})
+   : 
+       <p>no matches found</p>
+   }
+      </div>
     </div>
     );
   }

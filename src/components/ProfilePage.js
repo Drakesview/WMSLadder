@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom'
 import {startGetMatches} from '../actions/matches'
 import UpcomingGamesPage from './UpcomingGamesPage'
 import PendingRequestPage from './PendingRequestPage'
@@ -19,7 +20,10 @@ export class ControlledTabs extends React.Component {
       }).gamesWon,
         gamesLost:this.props.ladder.find(obj => {
           return obj.id === this.props.match.params.id
-      }).gamesLost
+      }).gamesLost,
+        upcomingGames:this.props.matches.filter((el) => {
+          return el.stage === 1
+        })
       }
     }
 
@@ -28,13 +32,21 @@ export class ControlledTabs extends React.Component {
     }
     
     render() {
+      const upcomingGamesCount = this.props.matches.filter((match) => {
+        return match.stage === 1
+      })
+      const pendingGamesCount = this.props.matches.filter((match) => {
+        return match.stage === 2
+      })
+      const myProfile = this.props.match.params.id === this.props.auth.uid
     return (
     <div>
-      <h3>Hello {this.state.userName} </h3>
-      <p>you have won {this.state.gamesWon}</p>
+      <div>
+        <h3>{this.state.userName}'s Profile </h3>
+      </div>
       <div>
       <h3>Upcoming Games</h3>
-        {this.props.matches.length > 0 ? 
+        {upcomingGamesCount.length > 0 ? 
          this.props.matches.map((match) => {
            if (match.stage === 1) {
              return <UpcomingGamesPage 
@@ -48,20 +60,26 @@ export class ControlledTabs extends React.Component {
     }
       </div>
       <div>
-      <h3>Pending game requests</h3>
-      {this.props.matches.length > 0 ? 
+      {myProfile &&
+        <h3>Pending game requests</h3>
+      }
+        {myProfile && pendingGamesCount.length > 0 ? 
         this.props.matches.map((match) => {
           if (match.stage === 2) {
             return <PendingRequestPage 
               key = {match.id}
+              player1Id = {this.props.match.params.id}
               {...match}
+              
             />
           
         }})
    : 
-       <p>no matches found</p>
+       myProfile && <p>no matches found</p>
    }
+   
       </div>
+      {myProfile && <Link to="/create">Create Game Request</Link>}
     </div>
     );
   }
@@ -69,7 +87,8 @@ export class ControlledTabs extends React.Component {
   
   const mapStateToProps = (state) => ({
     ladder:state.ladder,
-    matches:state.matches
+    matches:state.matches,
+    auth:state.auth
   })
 
   const mapDispatchToProps = (dispatch) => ({

@@ -5,6 +5,7 @@ import LoginPage from '../components/LoginPage'
 import DashboardPage from '../components/DashboardPage';
 import LadderPage from '../components/LadderPage'
 import ResultsPage from '../components/ResultsPage'
+import CreateGameRequest from '../components/CreateGameRequest'
 import SignUpPage from '../components/SignUpPage'
 import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute.js';
@@ -20,7 +21,8 @@ const AppRouter = () => (
         <PublicRoute path="/" component={LoginPage} exact= {true} />
         <PublicRoute path="/signup" component={SignUpPage} />
         <PrivateRoute path="/dashboard" component={DashboardPage} />
-        <PrivateRoute path="/results" component={ResultsPage} />    
+        <PrivateRoute path="/results" component={ResultsPage} />   
+        <PrivateRoute path="/create" component={CreateGameRequest} />
         <PrivateRoute component={ControlledTabs} path="/profile/:id"/>
         <Route component={NotFoundPage}/>
       </Switch>

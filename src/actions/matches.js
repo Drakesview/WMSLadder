@@ -7,7 +7,9 @@ export const addMatch = (matchData) => ({
 });
 
 export const acceptGameRequest = (id) => {
-    return database.collection("matches").doc(id).update({stage:2})
+    return (dispatch) => {
+        return database.collection("matches").doc(id).update({stage:1})
+    }
 }
 
 export const startAddMatch = (matchData) => {

@@ -1,16 +1,34 @@
-import { connect } from 'react-redux'
 import React from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import {acceptGameRequest} from '../actions/matches'
 
-const PendingRequestPage = ({player1Name, player2Name, datePlayed, player1Id, Player1,id}) => (
+export class PendingRequestPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+        //this.acceptGame = this.acceptGame.bind(this)
+    }
+acceptGame = () => {
+this.props.acceptGameRequest(this.props.id)
+console.log(this.props)
+}
+render() {
+    return (    
     <div>
-    <p>{id}</p>
-        <p>{player1Name} vs {player2Name}</p>
-        <p>On {moment(datePlayed).format('Do MMMM YYYY')}</p>
-        {Player1 === player1Id ? <button disabled>Pending</button>: <button onClick={() => {alert(`${id}`)}}>Accept Game</button>}
+    <p>{this.props.id}</p>
+        <p>{this.props.player1Name} vs {this.props.player2Name}</p>
+        <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')}</p>
+        {this.props.Player1 === this.props.player1Id ? <button disabled>Pending</button>: <button onClick={this.acceptGame}>Accept Game</button>}
         
     </div>
 )
+    }
+}
 
+const mapDispatchToProps = (dispatch) => ({
+    acceptGameRequest : (id) => dispatch(acceptGameRequest(id))
+})
 
-export default PendingRequestPage
+export default connect(undefined, mapDispatchToProps)(PendingRequestPage)

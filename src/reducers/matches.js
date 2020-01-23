@@ -7,6 +7,8 @@ export default (state = [], action) => {
                 ...state,
                 action.matchData
             ]
+        case 'REMOVE_MATCH':
+            return state.filter((match) => match.id !== action.id)
     default:
         return state 
     }

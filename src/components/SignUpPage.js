@@ -42,6 +42,9 @@ export class SignUpPage extends React.Component{
         const confirmPassword = e.target.value;
         this.setState(() => ({confirmPassword}))
     }
+    backButton = () => {
+        this.props.history.goBack();
+    }
     onSubmit = (e) => {
         e.preventDefault()
         const state = this.state
@@ -124,6 +127,7 @@ export class SignUpPage extends React.Component{
                     onChange={this.onConfirmPasswordChange}
                     />
                 <button>Sign Up</button>
+                <button onClick={this.backButton}>Back</button>
             </form>
         )
     }

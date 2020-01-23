@@ -26,7 +26,6 @@ export class ControlledTabs extends React.Component {
         })
       }
     }
-
     componentDidMount() {
       this.props.startGetMatches(this.props.match.params.id)
     }

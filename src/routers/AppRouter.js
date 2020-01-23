@@ -4,13 +4,14 @@ import createHistory from 'history/createBrowserHistory'
 import LoginPage from '../components/LoginPage'
 import DashboardPage from '../components/DashboardPage';
 import LadderPage from '../components/LadderPage'
-import ResultsPage from '../components/ResultsPage'
-import CreateGameRequest from '../components/CreateGameRequest'
-import SignUpPage from '../components/SignUpPage'
+import ResultsPage from '../components/ResultsPage';
+import CreateGameRequest from '../components/CreateGameRequest';
+import SignUpPage from '../components/SignUpPage';
 import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute.js';
 import PublicRoute  from './PublicRoute';
-import ControlledTabs from '../components/ProfilePage'
+import ControlledTabs from '../components/ProfilePage';
+import EditGameResult from '../components/EditGameResult';
 
 export const history = createHistory();
 
@@ -21,6 +22,7 @@ const AppRouter = () => (
         <PublicRoute path="/" component={LoginPage} exact= {true} />
         <PublicRoute path="/signup" component={SignUpPage} />
         <PrivateRoute path="/dashboard" component={DashboardPage} />
+        <PrivateRoute path="/match/:id" component={EditGameResult} />
         <PrivateRoute path="/results" component={ResultsPage} />   
         <PrivateRoute path="/create" component={CreateGameRequest} />
         <PrivateRoute component={ControlledTabs} path="/profile/:id"/>

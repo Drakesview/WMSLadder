@@ -6,9 +6,18 @@ export const addMatch = (matchData) => ({
     matchData
 });
 
-export const acceptGameRequest = (id) => {
+
+export const rejectMatch = (id) => ({
+    type:'REMOVE_MATCH',
+    id
+}) 
+
+export const startRejectMatch = (id) => {
     return (dispatch) => {
-        return database.collection("matches").doc(id).update({stage:1})
+        return database.collection("matches").doc(id).delete()
+        .then(() => {
+            dispatch(rejectMatch(id))
+        })
     }
 }
 
@@ -44,4 +53,14 @@ export const startGetMatches = (id) => {
         })
 
     }
+}
+
+export const acceptGameRequest = (id, playerid) => {
+    return (dispatch) => {
+        return database.collection("matches").doc(id).update({stage:1}).then(() =>
+        {
+            dispatch(startGetMatches(playerid))
+        })
+    }
+    
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import validator from 'validator'
-import {startCreateUser} from '../actions/auth'
+import {startCreateUser, startSendEmailVerification} from '../actions/auth'
 import {startAddUserToLadder} from '../actions/ladder'
 
 
@@ -62,10 +62,14 @@ export class SignUpPage extends React.Component{
                                     gamesPlayed:0,
                                     gamesWon:0,
                                     gamesLost:0
+                                }).then(() => {
+                                    this.props.startSendEmailVerification()
                                 })
                             }).catch((e) => {
                                 this.setState(() => ({error:e.message}))
                             })
+                            
+                            
                             
                         } else {
                             this.setState(() => ({error:'Passwords must match'}))
@@ -136,7 +140,8 @@ export class SignUpPage extends React.Component{
 const mapDispatchToProps = (dispatch) => {
     return {
         startCreateUser: (email, password) => dispatch(startCreateUser(email, password)),
-        startAddUserToLadder: (userData) => dispatch(startAddUserToLadder(userData))
+        startAddUserToLadder: (userData) => dispatch(startAddUserToLadder(userData)),
+        startSendEmailVerification: () => dispatch(startSendEmailVerification())
     }
 }
 

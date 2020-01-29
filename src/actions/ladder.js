@@ -11,7 +11,7 @@ export const startGetLadder = () => {
             const users = []
             querySnapshot.forEach((doc) => {
                 users.push({
-                    id:doc.id,
+                    pathId:doc.id,
                     ...doc.data()
                 })
             })
@@ -59,10 +59,23 @@ export const startAddUserToLadder = ({id,name,email,gamesPlayed,gamesWon,gamesLo
     }
 }
 
-export const startUpdateLadder = (newLadder) => {
+// export const startUpdateLadder = (newLadder) => {
+//     return (dispatch) => {
+//         return database.ref('ladder/users/').set(newLadder).then(() => {
+//             dispatch(getLadder(newLadder))
+//         })
+//     }
+// }
+
+export const startUpdateLadder = (({pathId, gamesWon, gamesLost, gamesPlayed, pos}) => {
     return (dispatch) => {
-        return database.ref('ladder/users/').set(newLadder).then(() => {
-            dispatch(getLadder(newLadder))
+        return database.collection("users").doc(pathId).update({
+            gamesWon,
+            gamesLost,
+            gamesPlayed,
+            pos
+        }).then(() => {
+            dispatch(startGetLadder())
         })
     }
-}
+})

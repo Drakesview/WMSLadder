@@ -1,12 +1,5 @@
 import database from '../firebase/firebase'
 
-
-export const addMatch = (matchData) => ({
-    type:'ADD_MATCH',
-    matchData
-});
-
-
 export const rejectMatch = (id) => ({
     type:'REMOVE_MATCH',
     id
@@ -20,6 +13,11 @@ export const startRejectMatch = (id) => {
         })
     }
 }
+
+export const addMatch = (matchData) => ({
+    type:'ADD_MATCH',
+    matchData
+});
 
 export const startAddMatch = (matchData) => {
     return (dispatch) => {
@@ -63,4 +61,16 @@ export const acceptGameRequest = (id, playerid) => {
         })
     }
     
+}
+
+export const recordGameScore = ({id, LosingPlayer, WinningPlayer, Player1Score, Player2Score}) => {
+    return (dispatch) => {
+        return database.collection("matches").doc(id).update({
+            LosingPlayer,
+            WinningPlayer,
+            Player1Score,
+            Player2Score,
+            stage:3
+        })
+    }
 }

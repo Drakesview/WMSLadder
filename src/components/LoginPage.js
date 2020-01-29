@@ -49,6 +49,7 @@ export class LoginPage extends React.Component {
                     <div>
                         <h3>Not a member? Sign up now!</h3>
                         <Link className="button-layout" to="/signup">Sign Up</Link>
+                        <Link to="/forgottenPassword">Forgot password?</Link>
                     </div>
                 </div>
 

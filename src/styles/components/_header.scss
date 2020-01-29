@@ -16,3 +16,15 @@
         margin:0;
     }
 }
+
+.header__verifyEmail {
+    background: lighten($color: $dark-blue, $amount: 40);
+    justify-content: center;
+    display: flex;
+}
+
+.verifyEmail__content {
+    color: white;
+    justify-content: space-between;
+    display: flex;
+}

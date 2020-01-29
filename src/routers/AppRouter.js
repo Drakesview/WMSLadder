@@ -12,6 +12,7 @@ import PrivateRoute from './PrivateRoute.js';
 import PublicRoute  from './PublicRoute';
 import ControlledTabs from '../components/ProfilePage';
 import EditGameResult from '../components/EditGameResult';
+import ForgottenPasswordPage from '../components/ForgottenPasswordPage';
 
 export const history = createHistory();
 
@@ -21,6 +22,7 @@ const AppRouter = () => (
         <Switch>
         <PublicRoute path="/" component={LoginPage} exact= {true} />
         <PublicRoute path="/signup" component={SignUpPage} />
+        <PublicRoute path="/forgottenPassword" component={ForgottenPasswordPage} />
         <PrivateRoute path="/dashboard" component={DashboardPage} />
         <PrivateRoute path="/match/:id" component={EditGameResult} />
         <PrivateRoute path="/results" component={ResultsPage} />   

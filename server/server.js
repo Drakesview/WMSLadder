@@ -11,5 +11,6 @@ app.get('*',(req, res) => {
 });
 
 app.listen(port, () => {
+    console.log(process.env.FIREBASE_PROJECT_ID)
     console.log('Server is running');
 });

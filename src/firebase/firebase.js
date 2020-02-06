@@ -14,7 +14,7 @@ const firebaseConfig = {
   };
   
 firebase.initializeApp(firebaseConfig);
-console.log(firebaseConfig.projectId)
+
 // const database = firebase.database()
 const database = firebase.firestore();
 

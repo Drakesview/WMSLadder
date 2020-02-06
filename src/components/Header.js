@@ -22,7 +22,7 @@ export class Header extends React.Component {
             <div className="content-container">
                 <div className="header__content">
                 <Link className="header__title" to={"/dashboard"} >
-                    <h1>Boilerplate</h1>
+                    <h1>WMS Squash Laddder</h1>
                 </Link>
                 <Link className="header__title" to={"/profile/"+this.props.id}>
                     <h1>Profile</h1>

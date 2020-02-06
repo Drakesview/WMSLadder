@@ -8,7 +8,7 @@ import 'normalize.css/normalize.css'
 import './styles/styles.scss'
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import {firebase}  from './firebase/firebase'
 import LoadingPage from './components/LoadingPage'
 import {startGetLadder} from './actions/ladder'

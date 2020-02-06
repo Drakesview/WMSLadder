@@ -55,9 +55,13 @@ export class SignUpPage extends React.Component{
                         if(state.password === state.confirmPassword) {
                             this.setState(() => ({error:''}))
                             this.props.startCreateUser(state.email,state.password).then((data) => {
+                                const firstName = state.firstName.charAt(0).toUpperCase() + state.firstName.slice(1).toLowerCase()
+                                const lastName = state.lastName.charAt(0).toUpperCase() + state.lastName.slice(1).toLowerCase() 
+                                const name = `${firstName} ${lastName}`
+                                console.log(firstName, lastName)
                                 this.props.startAddUserToLadder({
                                     id:data.user.uid,
-                                    name:`${state.firstName} ${state.lastName}`,
+                                    name,
                                     email:state.email,
                                     gamesPlayed:0,
                                     gamesWon:0,
@@ -75,13 +79,13 @@ export class SignUpPage extends React.Component{
                             this.setState(() => ({error:'Passwords must match'}))
                         }
                     } else {
-                        this.setState(() => ({error:'Password must be atleast 8 characters and contain atleast 1 number and one letter'}))
+                        this.setState(() => ({error:'Password must be atleast 8 characters and contain atleast one number and one letter'}))
                         }
                 } else {
                     this.setState(() => ({error:'Email addresses must match'}))
                 }
             } else {
-                this.setState(() => ({error:'Ladder is for WMS/Captia employees only please enter a wms or capita email'}))
+                this.setState(() => ({error:'Ladder is for WMS/Captia employees only please enter a WMS or Capita email'}))
 
             }
         } else {
@@ -91,10 +95,14 @@ export class SignUpPage extends React.Component{
     }
     render () {
         return (
-            <form onSubmit={this.onSubmit}>
+            <div className="box-layout">
+            <div className="box-layout__box">
+            <form onSubmit={this.onSubmit} className="form">
+            <h1 className="box-layout__title">WMS Squash Ladder</h1>
             {this.state.error && <p>{this.state.error}</p>}
                 <input
                     type="text"
+                    className="text-input"
                     placeholder="First Name"
                     autoFocus
                     value = {this.state.firstName}
@@ -102,37 +110,45 @@ export class SignUpPage extends React.Component{
                     />
                 <input
                     type="text"
+                    className="text-input"
                     placeholder="Last Name"
                     value = {this.state.lastName}
                     onChange={this.onLastNameChange}
                     />
                 <input
                     type="text"
+                    className="text-input"
                     placeholder="Email Address"
                     value = {this.state.email}
                     onChange={this.onEmailChange}
                     />
                 <input
                     type="text"
+                    className="text-input"
                     placeholder="Confirm Email Address"
                     value = {this.state.confirmEmail}
                     onChange={this.onConfirmEmailChange}
                     />
                 <input
                     type="password"
+                    className="text-input"
                     placeholder="Password"
                     value = {this.state.password}
                     onChange={this.onPasswordChange}
                     />
                 <input
                     type="password"
+                    className="text-input"
                     placeholder="Confirm Password"
                     value = {this.state.confirmPassword}
                     onChange={this.onConfirmPasswordChange}
                     />
-                <button>Sign Up</button>
-                <button onClick={this.backButton}>Back</button>
+                <button className="button-layout">Sign Up</button>
+                
             </form>
+                <button onClick={this.backButton} className="button-layout button-layout--secondary">Back</button>
+                </div>
+            </div>
         )
     }
 }

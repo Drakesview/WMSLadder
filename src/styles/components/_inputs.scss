@@ -4,6 +4,9 @@
     font-size: $font-size-large;
     font-weight: 300;
     padding: $s-size;
+    h3 {
+        margin:0;
+    }
 }
 
 .select {
@@ -13,4 +16,10 @@
 .textarea {
     @extend .text-input;
     height: 10rem;
+}
+
+.text-header {
+    @extend .text-input;
+    border: none;
+    margin:0 auto;
 }

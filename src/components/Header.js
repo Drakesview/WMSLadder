@@ -11,14 +11,6 @@ export class Header extends React.Component {
             error:''
         }
     }
-    verifyEmail = (e) => {
-        if (this.props.emailVerified === false) {
-            e.preventDefault()
-            this.setState(() => ({error:'You must verify email before continuing'}))
-        } else {
-            this.setState(() => ({error:''}))
-        }
-    }
     sendEmail = (e) => {
         e.preventDefault()
         this.props.startSendEmailVerification()
@@ -40,10 +32,10 @@ export class Header extends React.Component {
                 {this.state.error && <p className="header__title">{this.state.error}</p>}
             </div>
             <div className="header__verifyEmail">
-                <div className="header__verifyEmail verifyEmail__content">
-                {!this.props.emailVerified && <p>Please verify email if you need another email 
+                <div className="verifyEmail__content">
+                {!this.props.emailVerified && <p>Please verify email if you need another email please
                     <span>
-                        <button onClick={this.sendEmail}>click here</button>
+                        <button className="button-layout button-layout--link button-layout--verif-link " onClick={this.sendEmail}>click here</button>
                     </span>
                     </p>}
                 </div>

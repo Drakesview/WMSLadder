@@ -158,33 +158,37 @@ export class EditGameResult extends React.Component{
     render() {
     return this.props.matches ?  (
         <div>
-        {this.state.error && <p>{this.state.error}</p>}
-            <form onSubmit={this.onSubmit}>
-            <div>
-                <h3>Player 1</h3>
-                <p>Current ladder position {this.state.player1CurrentIndex} </p>
-                <p>{this.state.player1}</p>
-
+        <div className="page-header">
+            <div className="content-container">
+                <h1 className="page-header__title">Record result</h1>
+            </div>
+        </div>
+        <div className="content-container">
+            <form onSubmit={this.onSubmit} className="form">
+            {this.state.error && <p className="form__error">{this.state.error}</p>}
+                <h3>{this.state.player1}</h3>
                 <input
+                autoFocus
+                className="text-input"
+                placeholder="Player 1 Score"
                 value={this.state.player1Score}
                 type="number"
                 onChange={this.onPlayer1ScoreChange}
                 ></input>
-            </div>
-            <div>
-                <h3>Player 2</h3>
-                <p>{this.state.player2}</p>
-                <p>Current ladder position {this.state.player2CurrentIndex} </p>
-                <input 
+                <h3>{this.state.player2}</h3>
+                <input
+                className="text-input"
+                placeholder="Player 2 score" 
                 value={this.state.player2Score}
                 type="number"
                 onChange={this.onPlayer2ScoreChange}
                 />
+                <div>
+            <button className="button-layout">Save Result</button>
             </div>
-            <button>test</button>
             </form>
-            <button onClick={this.goBack}>go back</button>
-        
+            <button className="form button-layout button-layout--secondary" onClick={this.goBack} >Cancel</button>
+        </div>
         </div>
 
         

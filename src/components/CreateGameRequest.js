@@ -62,16 +62,18 @@ export class ResultsPage extends React.Component{
     render() {
     return (
         <div>
-        <form onSubmit = {this.onSubmit}>
-            <div>
-            {this.state.error && <p>{this.state.error}</p>}
-                <h3>Player 1</h3>
-                {this.state.player1}
-            </div>
-        <div>
-            <h3>Player 2</h3>
-            <select name={this.state.player2} onChange={this.handleChange}>
-                <option value=''>Pick Opponent</option>
+        <div className="page-header">
+        <div className="content-container">
+            <h1 className="page-header__title">Create Game Request</h1>
+        </div>
+        </div>
+        <div className="content-container">
+        <form className="form" onSubmit = {this.onSubmit}>
+            {this.state.error && <p className="form__error">{this.state.error}</p>}
+            <div className="text-input">{this.state.player1}</div>
+            <div className="text-header">Vs</div>
+            <select className="text-input" name={this.state.player2} onChange={this.handleChange}>
+                <option className="text-input" value=''>Pick Opponent</option>
                 {this.props.players.map(({name,id}) => {
                     if(name !== this.state.player1){
                     return <option 
@@ -88,9 +90,9 @@ export class ResultsPage extends React.Component{
                  numberOfMonths={1}
                  isOutsideRange={() => false}
                 />
-        </div>
-            <button>Send Game Request</button>
+            <button className="button-layout">Send Game Request</button>
             </form>
+            </div>
         </div>
         )
     }

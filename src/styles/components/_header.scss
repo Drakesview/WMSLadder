@@ -26,5 +26,10 @@
 .verifyEmail__content {
     color: white;
     justify-content: space-between;
+    align-content: center;
     display: flex;
+    p {
+        margin:0;
+    }
+    
 }

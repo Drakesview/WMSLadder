@@ -1,4 +1,4 @@
-.list-header {
+.ladder-header {
     background: $off-white;
     border: 1px solid darken($off-white, 7%);
     color:$grey;
@@ -7,14 +7,20 @@
     padding: $s-size $m-size;
 }
 
-.list-body {
+.ladder-header__title {
+    justify-content: center;
+    align-content: center;
+    display: flex;
+}
+
+.ladder-body {
     margin-bottom: $m-size;
     @media (min-width: $desktop-breakpoint) {
         margin-bottom: $l-size;
     }
 }
 
-.list-item {
+.ladder-item {
     border:1px solid darken($off-white, 7%);
     border-top:none;
     color:$dark-grey;
@@ -34,7 +40,7 @@
     }
 }
 
-.list-item--message {
+.ladder-item--message {
     align-items: center;
     color:$grey;
     justify-content: center;
@@ -44,20 +50,24 @@
     }
 }
 
-.list-item__title {
+.ladder-item__title {
     margin:0;
     word-break: break-all;
 }
 
-.list-item__sub-title {
+.ladder-item__sub-title {
     color:$grey;
     font-size: $font-size-small;
 }
 
-.list-item__data {
+.ladder-item__data {
     margin: $s-size 0 0 0;
     @media (min-width:$desktop-breakpoint) {
         margin: 0;
         padding-left: $s-size;
     }
+}
+
+.ladder__first-place {
+    color:green;
 }

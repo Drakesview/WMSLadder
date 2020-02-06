@@ -9,14 +9,21 @@ export class UpcomingGamesPage extends React.Component {
         }
     }
 render() {
-    return (
+    return ( 
+        
+    this.props.myProfile ? 
     <Link to={'/match/'+this.props.id}>
         <div>
-        <p>{this.props.player1Name} vs {this.props.player2Name}</p>
-        <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')}</p>
-    </div>
+            <p>{this.props.player1Name} vs {this.props.player2Name}</p>
+            <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')}</p>
+        </div>
     </Link>
-        )
+     : 
+        <div>
+            <p>{this.props.player1Name} vs {this.props.player2Name}</p>
+            <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')}</p>
+        </div>
+    )
     }
 }
  

@@ -29,27 +29,33 @@ export class LoginPage extends React.Component {
     }
     render() {
         return (     
-                <div>
-                    <form onSubmit={this.onSubmit}>
+                <div className="box-layout">
+                <div className="box-layout__box">
+                    <form onSubmit={this.onSubmit} className="form">
+                    <h1 className="box-layout__title">WMS Squash Ladder</h1>
                     {this.state.error && <p>{this.state.error}</p>}
                         <input
                             type="text"
+                            className="text-input"
                             placeholder="Enter email"
                             onChange={this.onEmailChange}
                             value={this.state.email}
                             />
                         <input
                             type="password"
+                            className="text-input"
                             placeholder="Password"
                             value = {this.state.password}
                             onChange={this.onPasswordChange}
                             />
-                        <button>Sign in</button>
+                        <button className="button-layout">Sign in</button>
                     </form>
                     <div>
-                        <h3>Not a member? Sign up now!</h3>
-                        <Link className="button-layout" to="/signup">Sign Up</Link>
+                        <p>Not a member? <span><Link to="/signup">Sign up now!</Link></span></p>
+                        <div>
                         <Link to="/forgottenPassword">Forgot password?</Link>
+                        </div>
+                    </div>
                     </div>
                 </div>
 

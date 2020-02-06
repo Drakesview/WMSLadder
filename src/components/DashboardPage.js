@@ -5,7 +5,6 @@ import Header from './Header'
 const DashboardPage = () => (
     <div>
         <LadderPage/>
-        <Link to="/results">Record a result</Link>
     </div>
 );
 

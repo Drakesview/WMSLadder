@@ -13,6 +13,11 @@
     @extend .text-input;
 }
 
+.clock-input {
+    @extend .text-input;
+    width: 10rem;
+}
+
 .textarea {
     @extend .text-input;
     height: 10rem;

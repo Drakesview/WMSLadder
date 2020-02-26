@@ -15,13 +15,13 @@ render() {
     <Link to={'/match/'+this.props.id}>
         <div>
             <p>{this.props.player1Name} vs {this.props.player2Name}</p>
-            <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')}</p>
+            <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')} at {moment(this.props.datePlayed).format('h:mm a')}</p>
         </div>
     </Link>
      : 
         <div>
             <p>{this.props.player1Name} vs {this.props.player2Name}</p>
-            <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')}</p>
+            <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')} at {moment(this.props.datePlayed).format('h:mm a')}</p>
         </div>
     )
     }

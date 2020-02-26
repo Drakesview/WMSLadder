@@ -13,6 +13,20 @@
     display: flex;
 }
 
+.ladder-header__container {
+    @media (min-width: $desktop-breakpoint) {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    }
+}
+
+.ladder-header__container1 {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .ladder-body {
     margin-bottom: $m-size;
     @media (min-width: $desktop-breakpoint) {
@@ -35,7 +49,7 @@
     @media (min-width: $desktop-breakpoint) {
         align-items: center;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-evenly;
         padding: $m-size;
     }
 }
@@ -58,6 +72,7 @@
 .ladder-item__sub-title {
     color:$grey;
     font-size: $font-size-small;
+    display: block;
 }
 
 .ladder-item__data {
@@ -70,4 +85,8 @@
 
 .ladder__first-place {
     color:green;
+}
+
+.winningLogo {
+    width: 20px;
 }

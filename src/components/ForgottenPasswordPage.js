@@ -15,6 +15,9 @@ export class ForgottenPasswordPage extends React.Component {
         const email = e.target.value;
         this.setState(() => ({email}))
     }
+    backButton = () => {
+        this.props.history.goBack();
+    }
     onSubmit = (e) => {
         e.preventDefault()
         if (validator.isEmail(this.state.email)) {
@@ -26,19 +29,22 @@ export class ForgottenPasswordPage extends React.Component {
     }
 render () {
     return (
-        <div>
-            <form onSubmit={this.onSubmit}>
-            {this.state.error && <p>{this.state.error}</p>}
-                <label>Email address</label>
+        <div className="box-layout">
+        <div className="box-layout__box">
+            <form onSubmit={this.onSubmit} className="form">
+            <h1 className="box-layout__title">WMS Squash Ladder</h1>
+            {this.state.error && <p className="form__error">{this.state.error}</p>}
                 <input 
                     type="text"
                     placeholder="Enter email address"
                     value={this.state.email}
                     onChange={this.onEmailChange}
+                    className="text-input"
                 />
-                <button>Send Email</button>
+                <button className="button-layout">Send Email</button>
             </form>
-            <button>back</button> 
+            <button onClick={this.backButton} className="button-layout button-layout--secondary">back</button> 
+        </div>
         </div>
         )
     }

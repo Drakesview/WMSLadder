@@ -6,7 +6,6 @@ import {getLadder, startUpdateLadder} from '../actions/ladder'
 import {startAddMatch} from '../actions/matches'
 import uuid from 'uuid'
 
-const now = moment()
 
 export class ResultsPage extends React.Component{
     constructor(props) {
@@ -19,6 +18,8 @@ export class ResultsPage extends React.Component{
             player1Id:this.props.auth.uid,
             datePlayed: moment(),
             calendarFocused:false,
+            timePlayedHour:0,
+            timePlayedMin:0,
             error:''
         }
         this.handleChange = this.handleChange.bind(this)
@@ -32,6 +33,13 @@ export class ResultsPage extends React.Component{
             this.setState(() => ({datePlayed}))
         }
     }
+    onHourChange = (e) => {
+        this.setState({timePlayedHour:e.target.value})
+        
+    }
+    onMinuteChange = (e) => {
+        this.setState({timePlayedMin:e.target.value})
+    }
 
     onFocusChange = ({ focused }) => {
         this.setState(() => ({calendarFocused:focused}))
@@ -41,6 +49,7 @@ export class ResultsPage extends React.Component{
         if (this.state.player2 === '') {
              this.setState(() => ({error:'Please select an opponent'}))
         } else {
+            const datePlaying = this.state.datePlayed.set('hour', this.state.timePlayedHour).set('minute', this.state.timePlayedMin)
             this.props.startAddMatch({
                 player1Name:this.state.player1,
                 Player1:this.props.auth.uid,
@@ -52,7 +61,7 @@ export class ResultsPage extends React.Component{
                 Player2Score:0,
                 WinningPlayer:'',
                 LosingPlayer:'',
-                datePlayed:this.state.datePlayed.valueOf(),
+                datePlayed:datePlaying.valueOf(),
                 stage:2
             })
             this.props.history.goBack()
@@ -89,7 +98,45 @@ export class ResultsPage extends React.Component{
                  onFocusChange={this.onFocusChange}
                  numberOfMonths={1}
                  isOutsideRange={() => false}
+                 displayFormat={() => "DD/MM/YYYY"}
                 />
+                <div>
+            <select className="text-input clock-input"
+            onChange={this.onHourChange}>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>
+                <option>08</option>
+                <option>09</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+            </select>
+            <span>:</span>
+            <select className="text-input clock-input"
+            onChange={this.onMinuteChange}> 
+                <option>00</option>
+                <option>15</option>
+                <option>30</option>
+                <option>45</option>
+            </select>
+            </div>
             <button className="button-layout">Send Game Request</button>
             </form>
             </div>

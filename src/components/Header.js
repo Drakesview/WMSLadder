@@ -8,7 +8,8 @@ export class Header extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            error:''
+            error:'',
+            showMenu:false
         }
     }
     sendEmail = (e) => {
@@ -16,10 +17,15 @@ export class Header extends React.Component {
         this.props.startSendEmailVerification()
     }
 
+    showMenu = (e) => {
+        console.log(e.target)
+        this.setState(() => ( {showMenu:!this.state.showMenu} ))
+    }
+
     render(){
     return (
         <header className="header">
-            <div className="content-container">
+             <div className="content-container">
                 <div className="header__content">
                 <Link className="header__title" to={"/dashboard"} >
                     <h1>WMS Squash Ladder</h1>
@@ -27,6 +33,15 @@ export class Header extends React.Component {
                 <Link className="header__title" to={"/profile/"+this.props.id}>
                     <h1>Profile</h1>
                 </Link>
+                <div className="dropdown">
+                <button onClick={this.showMenu} className="dropbtn">click me</button>
+                {this.state.showMenu && 
+                    <div className="dropdown-content" id="myDropdown"> 
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    </div>}
+                </div>
                 <button className="button-layout button-layout--link" onClick={this.props.startLogout}>Logout</button> 
                 </div>
                 {this.state.error && <p className="header__title">{this.state.error}</p>}
@@ -40,8 +55,11 @@ export class Header extends React.Component {
                     </p>}
                 </div>
             </div>
+
         </header>
-    )};
+    )
+
+};
 }
 
 

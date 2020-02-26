@@ -15,7 +15,7 @@ render() {
     return (    
     <div>
         <p>{this.props.player1Name} vs {this.props.player2Name}</p>
-        <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')}</p>
+        <p>On {moment(this.props.datePlayed).format('Do MMMM YYYY')} at {moment(this.props.datePlayed).format('h:mm a')}</p>
         {this.props.Player1 === this.props.player1Id ? <button disabled>Pending</button>: <button onClick={this.acceptGame}>Accept Game</button>}
         <button onClick={this.rejectGame}>{this.props.Player1 === this.props.player1Id ? "Cancel" : "Reject"}</button>
     </div>

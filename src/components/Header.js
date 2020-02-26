@@ -9,17 +9,17 @@ export class Header extends React.Component {
         super(props)
         this.state = {
             error:'',
-            showMenu:false
         }
     }
     sendEmail = (e) => {
         e.preventDefault()
         this.props.startSendEmailVerification()
     }
-
-    showMenu = (e) => {
-        console.log(e.target)
-        this.setState(() => ( {showMenu:!this.state.showMenu} ))
+    showMenu = () =>  {
+        document.getElementById('myDropdown').classList.toggle('show')        
+    }
+    onBlur() {
+        document.getElementById('myDropdown').classList.remove('show')
     }
 
     render(){
@@ -34,13 +34,17 @@ export class Header extends React.Component {
                     <h1>Profile</h1>
                 </Link>
                 <div className="dropdown">
-                <button onClick={this.showMenu} className="dropbtn">click me</button>
-                {this.state.showMenu && 
+                <button
+                onClick={this.showMenu}
+                onBlur={this.onBlur.bind(this)} 
+                className="dropbtn" 
+                >click me
+                </button>
                     <div className="dropdown-content" id="myDropdown"> 
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
                     <a href="#contact">Contact</a>
-                    </div>}
+                    </div>
                 </div>
                 <button className="button-layout button-layout--link" onClick={this.props.startLogout}>Logout</button> 
                 </div>

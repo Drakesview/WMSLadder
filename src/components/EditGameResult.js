@@ -71,6 +71,7 @@ export class EditGameResult extends React.Component{
     }
     onSubmit = (e) => {
         e.preventDefault()
+        console.log('submitted')
         const propPlayers = this.props.players
         const statePlayers = this.state
         if (this.state.player2 === '') {
@@ -146,7 +147,8 @@ export class EditGameResult extends React.Component{
             }
         }
     }
-    goBack = () => {
+    goBack = (e) => {
+        e.preventDefault()
         this.props.history.goBack()
     }
 
@@ -183,11 +185,9 @@ export class EditGameResult extends React.Component{
                 type="number"
                 onChange={this.onPlayer2ScoreChange}
                 />
-                <div>
-            <button className="button-layout">Save Result</button>
-            </div>
+            <button type="submit" className="button-layout">Save Result</button>
+            <button className="button-layout button-layout--secondary" onClick={this.goBack} >Cancel</button>
             </form>
-            <button className="form button-layout button-layout--secondary" onClick={this.goBack} >Cancel</button>
         </div>
         </div>
 

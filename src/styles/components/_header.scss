@@ -38,6 +38,7 @@
 }
 // test menu
 
+
 .dropbtn {
     background-color: #3498DB;
     color: white;
@@ -45,6 +46,7 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+    transform: translate();
   }
   
   .dropbtn:hover, .dropbtn:focus {
@@ -57,6 +59,7 @@
   }
   
   .dropdown-content {
+    display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
@@ -73,3 +76,9 @@
   }
   
   .dropdown a:hover {background-color: #ddd;}
+
+  .show {display:block;}
+
+  #dropbtn {
+    background-color: purple;
+  }
